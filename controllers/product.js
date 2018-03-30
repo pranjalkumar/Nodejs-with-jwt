@@ -7,13 +7,13 @@ exports.getProduct= function (req,res) {
     Products.find({},function (err,result) {
         if(err){
             res.status(500).json({
-                sucess:false,
+                success:false,
                 message: 'sorry! No result avaiable'
             });
         }
         else
         {   res.status(200).json({
-            sucess: true,
+            success: true,
             data :result
         });}
     });
@@ -29,13 +29,14 @@ exports.addProduct= function (req,res) {
     product.save(function (err,result) {
         if(err){
             res.status(500).json({
-                sucess:false,
+                success:false,
                 message: 'sorry! something happened, please try again'
             });
         }
         else
         {res.status(200).json({
-            sucess: true
+            success: true,
+            message: 'product added'
         });}
     });
 };
@@ -46,13 +47,13 @@ exports.getone= function (req,res) {
     Products.findById(id,function (err,result) {
         if(err){
             res.status(500).json({
-                sucess:false,
+                success:false,
                 message: 'No data corresponding to the id was found'
             });
         }
         else
         {res.status(200).json({
-            sucess: true,
+            success: true,
             data: result
         });}
     });
@@ -64,13 +65,13 @@ exports.updateProduct= function (req,res) {
     Products.update({_id:id},{$set: req.body},function (err,result) {
         if(err){
             res.status(500).json({
-                sucess:false,
+                success:false,
                 message: 'Sorry! Product can not be updated'
             });
         }
         else
         {res.status(200).json({
-            sucess: true,
+            success: true,
             message: "Product updated"
         });}
     });
@@ -82,13 +83,13 @@ exports.deleteProduct= function (req,res) {
     Products.remove({_id:id},function (err,result) {
         if(err){
             res.status(500).json({
-                sucess:false,
+                success:false,
                 message: 'Sorry! Invalid order selected'
             });
         }
         else
         {res.status(200).json({
-            sucess: true,
+            success: true,
             message: 'Product deleted'
         });}
     })
@@ -99,13 +100,13 @@ exports.getOrder= function (req,res) {
     Orders.find({},function (err,result) {
         if(err){
             res.status(500).json({
-                sucess:false,
+                success:false,
                 message: 'sorry! No result avaiable'
             });
         }
         else
         {res.status(200).json({
-            sucess: true,
+            success: true,
             data:result
         });}
     });
@@ -116,7 +117,7 @@ exports.addOrder= function (req,res) {
     Products.findById(req.body.productId,function (err,data) {
        if(err){
            res.status(500).json({
-               sucess:false,
+               success:false,
                message:"sorry!!Something happened"
            });
        }
@@ -130,20 +131,20 @@ exports.addOrder= function (req,res) {
            order.save(function (err,result) {
                if(err){
                    res.status(500).json({
-                       sucess:false,
+                       success:false,
                        message: 'sorry! something happened, please try again'
                    });
                }
                else
                {res.status(200).json({
-                   sucess: true,
+                   success: true,
                    message: "Order added"
                });}
            });
        }else{
            res.status(404).json({
-               sucess:false
-
+               success:false,
+               message: 'sorry! something happened, please try again'
            });
        }
 
