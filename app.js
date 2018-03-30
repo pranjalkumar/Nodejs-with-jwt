@@ -40,7 +40,7 @@ app.use(function (req,res,next) {
 
 //Routes middleware
 app.use('/', index);
-app.use('/users', users);
+app.use('/', users);
 
 
 

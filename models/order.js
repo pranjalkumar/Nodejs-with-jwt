@@ -2,13 +2,13 @@ var mongoose=require('mongoose');
 
 var productSchema= mongoose.Schema({
     _id:mongoose.Schema.Types.ObjectId,
-    name: {type:String, required:true},
-    price: {type:Number, required:true}
+    product: {type:mongoose.Schema.Types.ObjectId, ref: 'products'},
+    quantity: {type:Number,default:1}
 });
 
-var products=mongoose.model('products',productSchema);
+var orders=mongoose.model('orders',productSchema);
 
 module.exports={
-    Products:products
+    Orders:orders
 }
 // module.exports=mongoose.model('Product',productSchema);

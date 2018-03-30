@@ -3,3 +3,4 @@ morgan (for logging the request)
 body parser (for parsing the body)
 mongodb atlas
 mongoose (database )
+multer (for uploading the files, parsing the file data)
