@@ -3,6 +3,7 @@ var mongoose=require('mongoose');
 var Products=require('../models/product').Products;
 var Orders=require('../models/order').Orders;
 
+
 exports.getProduct= function (req,res) {
     Products.find({},function (err,result) {
         if(err){

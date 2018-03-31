@@ -3,6 +3,7 @@ var mongoose=require('mongoose');
 
 var Users=require('../models/user').Users;
 var bcrypt=require('bcrypt');
+var jwt=require('jsonwebtoken');
 
 exports.register= function (req,res) {
     Users.find({email: req.body.email},function(err,data){
@@ -80,8 +81,16 @@ exports.login= function (req,res) {
                    });
                }
                if(result){
+                   var token= jwt.sign({
+                      email: data[0].email,
+                       userId: data[0]._id
+                   },
+                       'secret',
+                       {expiresIn:"1h"}
+                       );
                    return res.status(200).json({
-                       success: 'successfully logged in'
+                       success: 'successfully logged in',
+                       token: token
                    });
                }else {
                    return res.status(401).json({
